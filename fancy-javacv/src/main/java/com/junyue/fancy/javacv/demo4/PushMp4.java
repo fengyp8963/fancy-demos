@@ -20,12 +20,12 @@ public class PushMp4 {
     /**
      * 本地MP4文件的完整路径(两分零五秒的视频)
      */
-    private static final String MP4_FILE_PATH = "D:\\5b4416774de99.mp4";
+    private static final String MP4_FILE_PATH = "D:\\sample-mp4-file.mp4";
 
     /**
      * SRS的推流地址
      */
-    private static final String SRS_PUSH_ADDRESS = "rtmp://192.168.50.47:11935/live/livestream";
+    private static final String SRS_PUSH_ADDRESS = "rtmp://192.168.50.47:11935/live/livestream1";
 
     /**
      * 读取指定的mp4文件，推送到SRS服务器
@@ -176,4 +176,8 @@ public class PushMp4 {
     public static void main(String[] args) throws Exception {
         grabAndPush(MP4_FILE_PATH, SRS_PUSH_ADDRESS);
     }
+
 }
+
+// ffmpeg -i input.mp4 -c:v h264 -flags -global_header -map 0 -f segment -segment_list output.m3u8 -segment_list_flags +live -segment_time 10 -segment_format_options movflags=+faststart -segment_format mpegts output_%03d.ts
+
